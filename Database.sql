@@ -1,4 +1,4 @@
-users - Table to store username and password
+--users - Table to store username and password
 
     -- Create a new database
     CREATE DATABASE MIMS;
@@ -13,7 +13,7 @@ users - Table to store username and password
         password VARCHAR(100) NOT NULL
     );
 ;
-Customer table 
+--Customer table 
     -- create table to store customer details
     CREATE TABLE CustomerDetails (
         ID INT PRIMARY KEY,
