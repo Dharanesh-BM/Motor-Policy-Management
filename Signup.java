@@ -202,15 +202,21 @@ public class Signup extends javax.swing.JFrame {
 
             if (username.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Username and Password cannot be empty");
-            } else {
-                JOptionPane.showMessageDialog(this, "Password is : "+password);
-                JOptionPane.showMessageDialog(this, "Confirm pass : "+confirmPassword);
+            } else if(password.length() <= 6) {
+                // JOptionPane.showMessageDialog(this,"Password must contain atleast 7 characters");
+                JOptionPane.showMessageDialog(this, "Error: Password must contain atleast 7 characters" , "Password Error", JOptionPane.ERROR_MESSAGE);
 
+            }
+            else {
                 if(password.equals(confirmPassword)){
                     if (signUpUser(username, password)) {
                     JOptionPane.showMessageDialog(this, "User created successfully!");
+                    
+                    this.setVisible(false);
+                    PersonalDetails ps = new PersonalDetails(DBConnector.getCustomerID(username));
+                    ps.setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Username already exists!\nTry using other usernames");
+                        JOptionPane.showMessageDialog(this, "Username already exists!\nTry using other usernames","Username exists",JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{

@@ -194,6 +194,7 @@ public class login extends javax.swing.JFrame {
 
         this.setVisible(false);
     }
+    
     private boolean validateUser(String username, String password) {
         try (Connection conn = DBConnector.getConnection()) {
             String query = "SELECT password FROM users WHERE username = ?";
