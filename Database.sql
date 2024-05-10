@@ -60,6 +60,16 @@ CREATE TABLE Vehicle_Details (
     color VARCHAR(50),
     vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus'))
 ); 
+
+--Create Payment table
+CREATE TABLE Payment (
+    PaymentID INT PRIMARY KEY,
+    CustomerID INT,
+    Timestamp TIMESTAMP,
+    Amount DECIMAL(10, 2),
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(ID)
+);
+    
 -- Create List of policies table
 CREATE TABLE List_of_Policies (
     PolicyID INT PRIMARY KEY,
