@@ -49,6 +49,19 @@ VALUES
 ('TN41ER4568', 'BMW', 'M4', 2010 ,'Vivek', 'Blue', 'Car'),
 ('KL02TX1439', 'Harley-Davidson', 'Street 750', 2021, 'Elon Musk', 'Black', 'Bike');
 
+INSERT INTO RC_Details (registration_number, make, model, year, owner_name, color, vehicle_category)
+VALUES 
+('KA02M1234', 'Bajaj', 'Pulsar', 2005, 'Anand Kumar', 'Blue', 'Bike'),
+('DL03S4567', 'Maruti Suzuki', 'Swift', 2010, 'Neha Sharma', 'White', 'Car'),
+('AP04R7890', 'Yamaha', 'FZ', 2018, 'Vijay Singh', 'Green', 'Bike'),
+('MH05L1357', 'Tata', 'Nano', 2015, 'Priya Patel', 'Yellow', 'Car'),
+('GJ06P2468', 'Kawasaki', 'Ninja', 2019, 'Rahul Verma', 'Orange', 'Bike'),
+('UP07Q3690', 'Hyundai', 'i20', 2016, 'Amit Gupta', 'Silver', 'Car'),
+('TN08R9876', 'TVS', 'Apache', 2014, 'Sneha Singh', 'Red', 'Bike'),
+('MP09S7531', 'Toyota', 'Innova', 2017, 'Amitabh Sharma', 'Black', 'Car'),
+('HR10T8520', 'Suzuki', 'Access', 2013, 'Sunita Verma', 'Pink', 'Bike'),
+('RJ11U9512', 'Ford', 'Figo', 2011, 'Ravi Kumar', 'Brown', 'Car');
+
 -- Create Vehicle Details 
 CREATE TABLE Vehicle_Details (
     ID int,
