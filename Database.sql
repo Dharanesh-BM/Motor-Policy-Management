@@ -63,12 +63,13 @@ CREATE TABLE Vehicle_Details (
 
 --Create Payment table
 CREATE TABLE Payment (
-    PaymentID INT PRIMARY KEY,
+    PaymentID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerID INT,
-    Timestamp TIMESTAMP,
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10, 2),
     FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(ID)
 );
+
     
 -- Create List of policies table
 CREATE TABLE List_of_Policies (
