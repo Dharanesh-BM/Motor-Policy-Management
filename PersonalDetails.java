@@ -5,6 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -313,14 +316,45 @@ public class PersonalDetails extends javax.swing.JFrame {
             int month = Month_ComboBox.getSelectedIndex() + 1;
             int year = (int) Year_ComboBox.getSelectedItem();
             
-            if(DBConnector.insertCustomer(ID,name, phone, email, address, gender, day, month, year)){
+            if(insertCustomer(ID,name, phone, email, address, gender, day, month, year)){
                 JOptionPane.showMessageDialog(this, "Details saved successfully!");
+                new Vehicle(ID).setVisible(true);
+                this.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(this, "Details is not stored");
             }
         }
-    }                                            
+    }        
+    private static boolean insertCustomer(int ID,String name, String phone, String email, String address, 
+                                        String gender, int day, int month,int year){
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "INSERT INTO CustomerDetails (ID, Name, PhoneNumber, Email, Address) VALUES (?, ?, ?, ?, ?);";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, ID);
+            statement.setString(2, name);
+            statement.setString(3, phone);
+            statement.setString(4, email);
+            statement.setString(5, address);
+            
+            int rowInserted = statement.executeUpdate();
+            if(rowInserted > 0){
+                String updateQuery = "UPDATE CustomerDetails SET Gender=?,DOB=? WHERE ID = ?;";
+                PreparedStatement updatestatement = conn.prepareStatement(updateQuery);
+    
+                String dob = year+"-"+month+"-"+day;
+                updatestatement.setString(1, gender);
+                updatestatement.setString(2, dob);
+                updatestatement.setInt(3, ID);
+                
+                int rowInserted_Update = updatestatement.executeUpdate();
+                return rowInserted_Update > 0;
+            } else return false;
+        } catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }                                    
     public static boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
