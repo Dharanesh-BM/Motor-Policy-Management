@@ -60,4 +60,16 @@ CREATE TABLE Vehicle_Details (
     color VARCHAR(50),
     vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus'))
 ); 
-
+-- Create List of policies table
+CREATE TABLE List_of_Policies (
+    PolicyID INT PRIMARY KEY,
+    PolicyName VARCHAR(255) NOT NULL,
+    Provider VARCHAR(100),
+    VehicleType ENUM('Car', 'Bike', 'Bus') NOT NULL,
+    ClaimsSettled INT,
+    PolicyDuration INT,
+    Highlights TEXT,
+    Exclusions TEXT,
+    ClaimProcedure TEXT
+);
+--Insert values into list of policies
