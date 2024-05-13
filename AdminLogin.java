@@ -167,6 +167,8 @@ public class AdminLogin extends javax.swing.JFrame {
 
             if (validateAdmin(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
+                this.setVisible(false);
+                new AdminHomePage().setVisible(true);
                 // Perform further actions upon successful login
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password");

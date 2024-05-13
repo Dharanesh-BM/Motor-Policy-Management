@@ -21,7 +21,7 @@ public class PolicyPage extends javax.swing.JFrame {
     /**
      * Creates new form policypage
      */
-    public PolicyPage(String Vtype) {
+    public PolicyPage(String VehicleID,String Vtype) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -346,7 +346,7 @@ public class PolicyPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PolicyPage("").setVisible(true);
+                new PolicyPage("","").setVisible(true);
             }
         });
     }

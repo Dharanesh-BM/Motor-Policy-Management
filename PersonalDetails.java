@@ -318,7 +318,7 @@ public class PersonalDetails extends javax.swing.JFrame {
             
             if(insertCustomer(ID,name, phone, email, address, gender, day, month, year)){
                 JOptionPane.showMessageDialog(this, "Details saved successfully!");
-                new Vehicle(ID).setVisible(true);
+                new addVehicle(ID).setVisible(true);
                 this.setVisible(false);
             }
             else{

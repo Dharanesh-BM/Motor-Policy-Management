@@ -24,7 +24,8 @@ public class UserSignup extends javax.swing.JFrame {
         // this.setSize(800,800);
         // this.setUndecorated(true); // Hide title bar and buttons
         this.setResizable(false);
-        this.setLocation(600,400);
+        this.setLocation(600,300);
+        // this.setLocationRelativeTo(null);
         initComponents();
     }
 

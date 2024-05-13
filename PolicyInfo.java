@@ -208,7 +208,7 @@ public class PolicyInfo extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void confirm_purchase_ButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // TODO add your handling code here:
+        // che
     }                                                       
 
     private void Companyname_labelMouseClicked(java.awt.event.MouseEvent evt) {                                               

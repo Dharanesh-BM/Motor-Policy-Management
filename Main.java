@@ -90,6 +90,9 @@ public class Main extends javax.swing.JFrame {
         User.setForeground(new java.awt.Color(255, 255, 255));
         User.setText("USER");
         User.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                UserMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 UserMouseEntered(evt);
             }
@@ -174,9 +177,14 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+    protected void UserMouseClicked(MouseEvent evt) {
+        this.setVisible(false);
+        new UserLogin().setVisible(true);
+    }
+
     protected void AdminMouseClicked(MouseEvent evt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'AdminMouseClicked'");
+        this.setVisible(false);
+        new AdminLogin().setVisible(true);
     }
 
     private void AdminMouseEntered(java.awt.event.MouseEvent evt) {                                   

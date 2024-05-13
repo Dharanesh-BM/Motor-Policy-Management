@@ -16,6 +16,7 @@ package com.example;
 import javax.swing.JOptionPane;
 import javax.swing.border.CompoundBorder;
  import java.awt.Color;
+import java.awt.event.MouseEvent;
  
  
  
@@ -100,6 +101,9 @@ import javax.swing.border.CompoundBorder;
                 if (originalBorder instanceof CompoundBorder) {
                     viewpolicy_label.setBorder(((CompoundBorder) originalBorder).getOutsideBorder());
                 }
+             }
+             public void mouseClicked(java.awt.event.MouseEvent evt){
+                viewpolicy_labelClicked(evt);
              }
          });
  
@@ -346,7 +350,12 @@ import javax.swing.border.CompoundBorder;
          pack();
      }// </editor-fold>                        
  
-     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+     protected void viewpolicy_labelClicked(MouseEvent evt) {
+        new vehicleSelectionPolicy(UserID).setVisible(true);
+        this.setVisible(false);
+    }
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
          // TODO add your handling code here:
      }                                            
      Color newColor = new Color(24, 116, 227);
@@ -368,7 +377,7 @@ import javax.swing.border.CompoundBorder;
      }                                            
      private void addvehicle_labelMouseClicked(java.awt.event.MouseEvent evt){
         this.setVisible(false);
-        new Vehicle(UserID).setVisible(true);
+        new addVehicle(UserID).setVisible(true);
      }
      private void userprofile_pic_labelMouseClicked(java.awt.event.MouseEvent evt) {                                                   
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION);
