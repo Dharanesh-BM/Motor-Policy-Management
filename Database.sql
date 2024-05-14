@@ -230,3 +230,10 @@ VALUES
 ->Losses resulting from pre-existing damage, rust, corrosion, or gradual deterioration.
 ->Damage caused by natural disasters such as earthquakes, floods, or hurricanes may be excluded.
 ->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.');
+
+
+-- Create admin table 
+CREATE TABLE AdminDetails(AdminName varchar(20),Password varchar(20));
+
+-- Creating admin account and storig in table
+INSERT INTO AdminDetails VALUES("admindhara", "$2a$12$ANcHeAotCodIW61vOSzIjOFl908/36yEqQfuJGd5txfRvx6kysZIq");
