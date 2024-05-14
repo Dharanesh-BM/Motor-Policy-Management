@@ -24,6 +24,7 @@
         Address VARCHAR(255),
         DOB DATE
     );
+
 CREATE TABLE RC_Details (
     registration_number VARCHAR(255) PRIMARY KEY NOT NULL,
     make TEXT NOT NULL,
@@ -31,36 +32,35 @@ CREATE TABLE RC_Details (
     year INTEGER NOT NULL,
     owner_name VARCHAR(255),
     color VARCHAR(50),
-    vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus'))
+    vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike', 'Bus')),
+    cc INTEGER,
+    engine_chase_number VARCHAR(255),
+    fitness_upto_date DATE
 );
-
--- Insert data with vehicle_category specified
-INSERT INTO RC_Details (registration_number, make, model, year, owner_name, color, vehicle_category)
+-- Insert data with vehicle_category and additional details specified
+INSERT INTO RC_Details (registration_number, make, model, year, owner_name, color, vehicle_category, cc, engine_chase_number, fitness_upto_date)
 VALUES 
-('PY01T2910', 'HeroHonda', 'Splendor', 2002, 'Raj Kishore', 'Black', 'Bike'),
-('TN31E5955', 'Hundai', 'Santro', 2004, 'Sankar', 'Silver', 'Car'),
-('TN37Y7879', 'Honda', 'Civic', 2019, 'Mike Mama', 'Red', 'Car'),
-('TN39AX1530', 'HeroHonda', 'Splendor', 2002 ,'Deepak', 'Silver', 'Bike'),
-('TN42AY7474', 'HeroHonda', 'PassionPro', 2008 ,'Dharanesh', 'Blue', 'Bike'),
-('TN36CX9636', 'Bajaj', 'Pulsar', 2010 ,'Jeevan', 'Red', 'Bike'),
-('TN12EA4567', 'Hero', 'Xtreme', 2013 ,'Nitheesh', 'Red', 'Bike'),
-('TN37RE7594', 'Yamaha', 'FZ-S', 2019 ,'SaiAdithya', 'Blue', 'Bike'),
-('TN45DF3625', 'Audi', 'A8', 2023 ,'Raj Kishore', 'Blue', 'Car'),
-('TN41ER4568', 'BMW', 'M4', 2010 ,'Vivek', 'Blue', 'Car'),
-('KL02TX1439', 'Harley-Davidson', 'Street 750', 2021, 'Elon Musk', 'Black', 'Bike');
-
-INSERT INTO RC_Details (registration_number, make, model, year, owner_name, color, vehicle_category)
-VALUES 
-('KA02M1234', 'Bajaj', 'Pulsar', 2005, 'Anand Kumar', 'Blue', 'Bike'),
-('DL03S4567', 'Maruti Suzuki', 'Swift', 2010, 'Neha Sharma', 'White', 'Car'),
-('AP04R7890', 'Yamaha', 'FZ', 2018, 'Vijay Singh', 'Green', 'Bike'),
-('MH05L1357', 'Tata', 'Nano', 2015, 'Priya Patel', 'Yellow', 'Car'),
-('GJ06P2468', 'Kawasaki', 'Ninja', 2019, 'Rahul Verma', 'Orange', 'Bike'),
-('UP07Q3690', 'Hyundai', 'i20', 2016, 'Amit Gupta', 'Silver', 'Car'),
-('TN08R9876', 'TVS', 'Apache', 2014, 'Sneha Singh', 'Red', 'Bike'),
-('MP09S7531', 'Toyota', 'Innova', 2017, 'Amitabh Sharma', 'Black', 'Car'),
-('HR10T8520', 'Suzuki', 'Access', 2013, 'Sunita Verma', 'Pink', 'Bike'),
-('RJ11U9512', 'Ford', 'Figo', 2011, 'Ravi Kumar', 'Brown', 'Car');
+('PY01T2910', 'HeroHonda', 'Splendor', 2002, 'Raj Kishore', 'Black', 'Bike', 100, 'EH123456789', '2027-01-01'),
+('TN31E5955', 'Hundai', 'Santro', 2004, 'Sankar', 'Silver', 'Car', 1100, 'EH987654321', '2030-02-01'),
+('TN37Y7879', 'Honda', 'Civic', 2019, 'Mike Mama', 'Red', 'Car', 1800, 'EH112233445', '2030-03-01'),
+('TN39AX1530', 'HeroHonda', 'Splendor', 2002, 'Deepak', 'Silver', 'Bike', 100, 'EH223344556', '2030-04-01'),
+('TN42AY7474', 'HeroHonda', 'PassionPro', 2008, 'Dharanesh', 'Blue', 'Bike', 125, 'EH334455667', '2030-05-01'),
+('TN36CX9636', 'Bajaj', 'Pulsar', 2010, 'Jeevan', 'Red', 'Bike', 150, 'EH445566778', '2030-06-01'),
+('TN12EA4567', 'Hero', 'Xtreme', 2013, 'Nitheesh', 'Red', 'Bike', 160, 'EH556677889', '2030-07-01'),
+('TN37RE7594', 'Yamaha', 'FZ-S', 2019, 'SaiAdithya', 'Blue', 'Bike', 150, 'EH667788990', '2030-08-01'),
+('TN45DF3625', 'Audi', 'A8', 2023, 'Raj Kishore', 'Blue', 'Car', 3000, 'EH778899001', '2030-09-01'),
+('TN41ER4568', 'BMW', 'M4', 2010, 'Vivek', 'Blue', 'Car', 3000, 'EH889900112', '2030-10-01'),
+('KL02TX1439', 'Harley-Davidson', 'Street 750', 2021, 'Elon Musk', 'Black', 'Bike', 750, 'EH990011223', '2030-11-01'),
+('KA02M1234', 'Bajaj', 'Pulsar', 2005, 'Anand Kumar', 'Blue', 'Bike', 150, 'EH101112233', '2030-12-01'),
+('DL03S4567', 'Maruti Suzuki', 'Swift', 2010, 'Neha Sharma', 'White', 'Car', 1200, 'EH121233344', '2031-01-01'),
+('AP04R7890', 'Yamaha', 'FZ', 2018, 'Vijay Singh', 'Green', 'Bike', 150, 'EH131344455', '2031-02-01'),
+('MH05L1357', 'Tata', 'Nano', 2015, 'Priya Patel', 'Yellow', 'Car', 624, 'EH141455566', '2031-03-01'),
+('GJ06P2468', 'Kawasaki', 'Ninja', 2019, 'Rahul Verma', 'Orange', 'Bike', 1000, 'EH151566677', '2031-04-01'),
+('UP07Q3690', 'Hyundai', 'i20', 2016, 'Amit Gupta', 'Silver', 'Car', 1200, 'EH161677788', '2031-05-01'),
+('TN08R9876', 'TVS', 'Apache', 2014, 'Sneha Singh', 'Red', 'Bike', 180, 'EH171788899', '2031-06-01'),
+('MP09S7531', 'Toyota', 'Innova', 2017, 'Amitabh Sharma', 'Black', 'Car', 2400, 'EH181899900', '2031-07-01'),
+('HR10T8520', 'Suzuki', 'Access', 2013, 'Sunita Verma', 'Pink', 'Bike', 125, 'EH192900011', '2031-08-01'),
+('RJ11U9512', 'Ford', 'Figo', 2011, 'Ravi Kumar', 'Brown', 'Car', 1400, 'EH203011122', '2031-09-01');
 
 -- Create Vehicle Details 
 CREATE TABLE Vehicle_Details (
@@ -72,6 +72,9 @@ CREATE TABLE Vehicle_Details (
     owner_name VARCHAR(255),
     color VARCHAR(50),
     vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus'))
+    cc INTEGER,
+    engine_chase_number VARCHAR(255),
+    fitness_upto_date DATE
 ); 
 
 --Create Payment table
@@ -231,9 +234,3 @@ VALUES
 ->Damage caused by natural disasters such as earthquakes, floods, or hurricanes may be excluded.
 ->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.');
 
-
--- Create admin table 
-CREATE TABLE AdminDetails(AdminName varchar(20),Password varchar(20));
-
--- Creating admin account and storig in table
-INSERT INTO AdminDetails VALUES("admindhara", "$2a$12$ANcHeAotCodIW61vOSzIjOFl908/36yEqQfuJGd5txfRvx6kysZIq");
