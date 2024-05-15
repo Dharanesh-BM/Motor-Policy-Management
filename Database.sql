@@ -89,7 +89,7 @@ CREATE TABLE Payment (
     
 -- Create List of policies table
 CREATE TABLE List_of_Policies (
-    PolicyID INT PRIMARY KEY,
+    PolicyID INT AUTO_INCREMENT PRIMARY KEY,
     PolicyName VARCHAR(255) NOT NULL,
     Provider VARCHAR(100),
     VehicleType ENUM('Car', 'Bike', 'Bus') NOT NULL,
