@@ -79,7 +79,7 @@ CREATE TABLE Vehicle_Details (
     year INTEGER NOT NULL,
     owner_name VARCHAR(255),
     color VARCHAR(50),
-    vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus'))
+    vehicle_category VARCHAR(10) NOT NULL CHECK (vehicle_category IN ('Car', 'Bike','Bus')),
     cc INTEGER,
     engine_chase_number VARCHAR(255),
     fitness_upto_date DATE
@@ -91,7 +91,7 @@ CREATE TABLE Payment (
     CustomerID INT,
     Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10, 2),
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(ID)
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID)
 );
 
     
