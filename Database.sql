@@ -12,7 +12,15 @@
         username VARCHAR(50) UNIQUE NOT NULL,
         password VARCHAR(100) NOT NULL
     );
-;
+
+    -- Ceate Admin Credentials
+    CREATE TABLE AdminDetails(
+        AdminName varchar(20),
+        Password varchar(100)
+    );
+    --Insert a single admin credentials
+    INSERT INTO AdminDetails VALUES('admindhara','$2a$12$ANcHeAotCodIW61vOSzIjOFl908/36yEqQfuJGd5txfRvx6kysZIq');
+
 --Customer table 
     -- create table to store customer details
     CREATE TABLE CustomerDetails (
