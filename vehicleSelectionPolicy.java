@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.cj.xdevapi.PreparableStatement;
 
 /*
@@ -28,13 +30,12 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.CustomerID = CustomerID;
-
         fetchVehicles(CustomerID);
     }
 
     private void fetchVehicles(int CustomerID) {
         try(Connection conn = DBConnector.getConnection()){
-            String query = "SELECT * FROM Vehicle_details WHERE ID = "+CustomerID;
+            String query = "SELECT * FROM Vehicle_Details WHERE CustomerID = " + CustomerID;
             PreparedStatement statement = conn.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
@@ -73,6 +74,12 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
         BMV_bazaar_label.setForeground(new java.awt.Color(24, 116, 227));
         BMV_bazaar_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BMV_bazaar_label.setText("BMV Bazaar");
+        BMV_bazaar_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BMV_bazaar_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BMV_bazaar_labelClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,7 +102,7 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
         selectvehicle_label.setText("Select your vehicle: ");
 
         choose_vehicle_combobox.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        choose_vehicle_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        choose_vehicle_combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No values found" }));
         choose_vehicle_combobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 choose_vehicle_comboboxActionPerformed(evt);
@@ -166,18 +173,24 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+    private void BMV_bazaar_labelClicked(java.awt.event.MouseEvent evt){
+        this.dispose();
+        new UserHomePage(CustomerID).setVisible(true);
+    }
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         String Vehicle = (String) choose_vehicle_combobox.getSelectedItem();
-        
-        this.setVisible(false);
-        try(Connection conn = DBConnector.getConnection()){
-            PreparedStatement statement = conn.prepareStatement("SELECT vehicle_category FROM Vehicle_details WHERE registration_number = "+Vehicle);
-            ResultSet result = statement.executeQuery();
-            result.next();
-            this.VehicleType = result.getString("vehicle_category");
-        } catch (SQLException ex){ex.printStackTrace();}
-        new PolicyPage(Vehicle,VehicleType).setVisible(true);;
+        if(Vehicle == null){
+            JOptionPane.showMessageDialog(this, "Invalid selection","Invalid selection",JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.setVisible(false);
+            try(Connection conn = DBConnector.getConnection()){
+                PreparedStatement statement = conn.prepareStatement("SELECT * FROM Vehicle_Details WHERE registration_number = '" + Vehicle + "'");
+                ResultSet result = statement.executeQuery();
+                result.next();
+                this.VehicleType = result.getString("vehicle_category");
+            } catch (SQLException ex){ex.printStackTrace();}
+            new PolicyPage(Vehicle,VehicleType).setVisible(true);
+        }
     }                                            
 
     private void choose_vehicle_comboboxActionPerformed(java.awt.event.ActionEvent evt) {                                                        
