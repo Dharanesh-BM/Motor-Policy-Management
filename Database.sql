@@ -89,9 +89,11 @@ CREATE TABLE Vehicle_Details (
 CREATE TABLE Payment (
     PaymentID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerID INT,
+    registration_number VARCHAR(255),
     Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10, 2),
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID)
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID),
+    FOREIGN KEY (registration_number) REFERENCES Vehicle_Details(registration_number)
 );
 
     
