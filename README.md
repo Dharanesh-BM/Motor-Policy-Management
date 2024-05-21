@@ -1,4 +1,3 @@
-# Motor-Policy-Management
 # Motor Insurance Management System
 
 ## Table of Contents
@@ -77,11 +76,7 @@ The Motor Insurance Management System is a desktop application designed to autom
 - `Payment`: Stores payment information.
 - `List_of_Policies`: Stores policy information.
 
-## ER Diagram
-![ER Diagram](path/to/er-diagram.png)
 
-## Class Diagram
-![Class Diagram](path/to/class-diagram.png)
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
@@ -94,7 +89,6 @@ Contributions are welcome! Please follow these steps:
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - your_email@example.com
+## Contributers
 
 Project Link: [https://github.com/your_username/motor-insurance-management-system](https://github.com/your_username/motor-insurance-management-system)
