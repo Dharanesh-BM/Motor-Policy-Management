@@ -21,11 +21,12 @@ public class PolicyPage extends javax.swing.JFrame {
     /**
      * Creates new form policypage
      */
-    public PolicyPage(String VehicleID,String Vtype) {
+    public PolicyPage(String VehicleNumber,String Vtype) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        navigateToRecord("Bike");
+        navigateToRecord(Vtype);
+        // navigateToRecord("Bike");
     }
 
     /**

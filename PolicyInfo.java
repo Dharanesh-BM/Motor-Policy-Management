@@ -26,8 +26,8 @@ public class PolicyInfo extends javax.swing.JFrame {
      */
     private int PolicyID;
     public PolicyInfo(int PID) {
-        // this.PolicyID = PID;
-        this.PolicyID = 1;
+        this.PolicyID = PID;
+        // this.PolicyID = 1;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -208,7 +208,8 @@ public class PolicyInfo extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void confirm_purchase_ButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // che
+        this.dispose();
+        new checkout("",0,0).setVisible(true);
     }                                                       
 
     private void Companyname_labelMouseClicked(java.awt.event.MouseEvent evt) {                                               

@@ -23,10 +23,11 @@ public class UserSignup extends javax.swing.JFrame {
     public UserSignup() {
         // this.setSize(800,800);
         // this.setUndecorated(true); // Hide title bar and buttons
-        this.setResizable(false);
-        this.setLocation(600,300);
-        // this.setLocationRelativeTo(null);
         initComponents();
+        this.setResizable(false);
+        // this.setLocation(600,300);
+        this.setLocationRelativeTo(null);
+        this.setTitle("SignUp");
     }
 
     /**
@@ -47,7 +48,8 @@ public class UserSignup extends javax.swing.JFrame {
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JPasswordField();
         Submit_button = new javax.swing.JButton();
-        close_button = new javax.swing.JButton();
+        close_button = new javax.swing.JLabel();
+        // close_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,21 +98,21 @@ public class UserSignup extends javax.swing.JFrame {
             }
         });
 
-        close_button.setBackground(new java.awt.Color(24, 116, 227));
-        close_button.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        close_button.setForeground(new java.awt.Color(255, 255, 255));
-        close_button.setText("x");
-        close_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        close_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                close_buttonMouseClicked(evt);
-            }
-        });
-        close_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                close_buttonActionPerformed(evt);
-            }
-        });
+        // close_button.setBackground(new java.awt.Color(24, 116, 227));
+        // close_button.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        // close_button.setForeground(new java.awt.Color(255, 255, 255));
+        // close_button.setText("");
+        // close_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        // close_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //         close_buttonMouseClicked(evt);
+        //     }
+        // });
+        // close_button.addActionListener(new java.awt.event.ActionListener() {
+        //     public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //         close_buttonActionPerformed(evt);
+        //     }
+        // });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,17 +213,17 @@ public class UserSignup extends javax.swing.JFrame {
             else {
                 if(password.equals(confirmPassword)){
                     if (signUpUser(username, password)) {
-                    JOptionPane.showMessageDialog(this, "User created successfully!");
-                    
-                    this.setVisible(false);
-                    PersonalDetails ps = new PersonalDetails(DBConnector.getCustomerID(username));
-                    ps.setVisible(true);
+                        JOptionPane.showMessageDialog(this, "User created successfully!");
+                        this.setVisible(false);
+                        new PersonalDetails(DBConnector.getCustomerID(username)).setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(this, "Username already exists!\nTry using other usernames","Username exists",JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Password mismatch!\nEnter same password");
+                    passwordField.setText("");
+                    confirmPasswordField.setText("");
                 }
                 
             }
@@ -288,7 +290,8 @@ public class UserSignup extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton Submit_button;
-    private javax.swing.JButton close_button;
+    // private javax.swing.JButton close_button;
+    private javax.swing.JLabel close_button;
     private javax.swing.JLabel signupLabel;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel passwordLabel;

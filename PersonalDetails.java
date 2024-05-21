@@ -25,13 +25,14 @@ public class PersonalDetails extends javax.swing.JFrame {
     /**
      * Creates new form personaldetails
      */
-    public int ID;
-    public PersonalDetails(int ID) {
+    public int CustomerID;
+    public PersonalDetails(int CustomerID) {
 
-        this.ID = ID;
-        this.setResizable(false);
-        this.setLocation(500,300);
+        this.CustomerID = CustomerID;
+        // this.setLocation(500,300);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -316,9 +317,9 @@ public class PersonalDetails extends javax.swing.JFrame {
             int month = Month_ComboBox.getSelectedIndex() + 1;
             int year = (int) Year_ComboBox.getSelectedItem();
             
-            if(insertCustomer(ID,name, phone, email, address, gender, day, month, year)){
+            if(insertCustomer(CustomerID,name, phone, email, address, gender, day, month, year)){
                 JOptionPane.showMessageDialog(this, "Details saved successfully!");
-                new addVehicle(ID).setVisible(true);
+                new addVehicle(CustomerID).setVisible(true);
                 this.setVisible(false);
             }
             else{
@@ -329,7 +330,7 @@ public class PersonalDetails extends javax.swing.JFrame {
     private static boolean insertCustomer(int ID,String name, String phone, String email, String address, 
                                         String gender, int day, int month,int year){
         try(Connection conn = DBConnector.getConnection()){
-            String query = "INSERT INTO CustomerDetails (ID, Name, PhoneNumber, Email, Address) VALUES (?, ?, ?, ?, ?);";
+            String query = "INSERT INTO CustomerDetails (CustomerID, Name, PhoneNumber, Email, Address) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, ID);
             statement.setString(2, name);
@@ -339,7 +340,7 @@ public class PersonalDetails extends javax.swing.JFrame {
             
             int rowInserted = statement.executeUpdate();
             if(rowInserted > 0){
-                String updateQuery = "UPDATE CustomerDetails SET Gender=?,DOB=? WHERE ID = ?;";
+                String updateQuery = "UPDATE CustomerDetails SET Gender=?,DOB=? WHERE CustomerID = ?;";
                 PreparedStatement updatestatement = conn.prepareStatement(updateQuery);
     
                 String dob = year+"-"+month+"-"+day;

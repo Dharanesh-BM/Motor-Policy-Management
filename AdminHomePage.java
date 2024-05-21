@@ -19,10 +19,10 @@ package com.example;
       * Creates new form admindashboard
       */
      public AdminHomePage() {
+        initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setLocation(500, 300);
-        initComponents();
+        // this.setLocation(500, 300);
      }
  
      /**
@@ -37,7 +37,7 @@ package com.example;
          admin_dashboard_label = new javax.swing.JLabel();
          jPanel1 = new javax.swing.JPanel();
          Add_Policy_Button = new javax.swing.JButton();
-         Add_Policy_Button1 = new javax.swing.JButton();
+         View_Claims_Button = new javax.swing.JButton();
          adminprofile_pic_label = new javax.swing.JLabel();
  
          setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,12 +56,12 @@ package com.example;
              }
          });
  
-         Add_Policy_Button1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-         Add_Policy_Button1.setText("View Claims");
-         Add_Policy_Button1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-         Add_Policy_Button1.addActionListener(new java.awt.event.ActionListener() {
+         View_Claims_Button.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+         View_Claims_Button.setText("View Claims");
+         View_Claims_Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+         View_Claims_Button.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 Add_Policy_Button1ActionPerformed(evt);
+                 View_Claims_ButtonActionPerformed(evt);
              }
          });
  
@@ -73,7 +73,7 @@ package com.example;
                  .addGap(39, 39, 39)
                  .addComponent(Add_Policy_Button)
                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
-                 .addComponent(Add_Policy_Button1)
+                 .addComponent(View_Claims_Button)
                  .addGap(86, 86, 86))
          );
          jPanel1Layout.setVerticalGroup(
@@ -82,7 +82,7 @@ package com.example;
                  .addGap(53, 53, 53)
                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(Add_Policy_Button)
-                     .addComponent(Add_Policy_Button1))
+                     .addComponent(View_Claims_Button))
                  .addContainerGap(187, Short.MAX_VALUE))
          );
  
@@ -129,11 +129,13 @@ package com.example;
      }// </editor-fold>                        
  
      private void Add_Policy_ButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-         // TODO add your handling code here:
+        this.setVisible(false);
+        new AdminAddPolicy().setVisible(true);
      }                                                 
  
-     private void Add_Policy_Button1ActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-         // TODO add your handling code here:
+     private void View_Claims_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setVisible(false);
+        new AdminViewClaims().setVisible(true);                                                   
      }                                                  
  
      private void adminprofile_pic_labelMouseClicked(java.awt.event.MouseEvent evt) {                                 
@@ -181,7 +183,7 @@ package com.example;
  
      // Variables declaration - do not modify                     
      private javax.swing.JButton Add_Policy_Button;
-     private javax.swing.JButton Add_Policy_Button1;
+     private javax.swing.JButton View_Claims_Button;
      private javax.swing.JLabel admin_dashboard_label;
      private javax.swing.JLabel adminprofile_pic_label;
      private javax.swing.JPanel jPanel1;

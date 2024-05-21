@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 public class DBConnector {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/MIMS";
     private static final String DB_USER = "root";
@@ -48,7 +46,7 @@ public class DBConnector {
 
     public static int getCustomerID(String username){
         try(Connection conn = getConnection()){
-            String query = "SELECT id FROM users WHERE username = ?";
+            String query = "SELECT CustomerID FROM users WHERE username = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, username);
 
@@ -57,11 +55,32 @@ public class DBConnector {
             int UserID;
             if(result.next())
             {
-                UserID = result.getInt("id");
+                UserID = result.getInt("CustomerID");
                 return UserID;
             } 
             else return 0; 
         } catch(SQLException ex){
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static int getCustomerID_UsingVehicleNumber(String VehicleNumber){
+        try(Connection conn = getConnection()){
+            String query = "SELECT CustomerID FROM Vehicle_Details WHERE registration_number = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, VehicleNumber);
+
+            ResultSet result = statement.executeQuery();
+
+            int CustomerID;
+            if(result.next())
+            {
+                CustomerID = result.getInt("CustomerID");
+                return CustomerID;
+            } 
+            else return 0;
+        } catch (SQLException ex){
             ex.printStackTrace();
             return 0;
         }

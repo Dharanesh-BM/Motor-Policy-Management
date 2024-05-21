@@ -181,8 +181,16 @@ public class UserLogin extends javax.swing.JFrame {
 
             if (validateUser(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
-                new HomePage(DBConnector.getCustomerID(username)).setVisible(true);
-                this.setVisible(false);
+                int CustomerID = DBConnector.getCustomerID(username);
+                if(checkPersonalDetails(CustomerID)){
+                    new UserHomePage(DBConnector.getCustomerID(username)).setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Please fill your Personal details!","Requirement",JOptionPane.ERROR_MESSAGE);
+                    // this.setVisible(false);
+                    this.dispose();
+                    new PersonalDetails(CustomerID).setVisible(true);
+                }
                 // Perform further actions upon successful login
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password");
@@ -194,10 +202,22 @@ public class UserLogin extends javax.swing.JFrame {
     private void Signup_labelMouseClicked(java.awt.event.MouseEvent evt) {                                           
         UserSignup signupPage = new UserSignup();
         signupPage.setVisible(true);
-
         this.setVisible(false);
     }
-    
+    private boolean checkPersonalDetails(int CustomerID){
+        try(Connection conn = DBConnector.getConnection()) {
+            String Query = "SELECT * FROM CustomerDetails WHERE CustomerID = "+CustomerID;
+            PreparedStatement statement = conn.prepareStatement(Query);
+            ResultSet result = statement.executeQuery();
+            if(result.next()){
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+     }
     private boolean validateUser(String username, String password) {
         try (Connection conn = DBConnector.getConnection()) {
             String query = "SELECT password FROM users WHERE username = ?";

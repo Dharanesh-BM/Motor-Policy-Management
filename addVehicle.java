@@ -27,9 +27,9 @@ public class addVehicle extends javax.swing.JFrame {
     /**
      * Creates new form Vehicle
      */
-    public int userID;
-    public addVehicle(int userID) {
-        this.userID = userID;
+    public int CustomerID;
+    public addVehicle(int CustomerID) {
+        this.CustomerID = CustomerID;
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -228,7 +228,7 @@ public class addVehicle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
     private boolean Skip_and_continueActionPerformed(){
-        new HomePage(this.userID).setVisible(true);
+        new UserHomePage(this.CustomerID).setVisible(true);
         this.setVisible(false);
         return true;
     }
@@ -281,7 +281,7 @@ public class addVehicle extends javax.swing.JFrame {
     }
     private boolean StoreVehicle(String reg_num){
         try(Connection conn = DBConnector.getConnection()){
-            String query = "INSERT INTO Vehicle_details VALUES(?,?,?,?,?,?,?,?);";
+            String query = "INSERT INTO Vehicle_Details VALUES(?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement statement = conn.prepareStatement(query);
             
             PreparedStatement statement2 = conn.prepareStatement("SELECT * FROM RC_Details WHERE registration_number = ?;");
@@ -289,7 +289,7 @@ public class addVehicle extends javax.swing.JFrame {
             System.out.println(reg_num);
             result = statement2.executeQuery();
             result.next();
-            statement.setInt(1, userID);
+            statement.setInt(1, CustomerID);
             statement.setString(2, result.getString("registration_number"));
             statement.setString(3, result.getString("make"));
             statement.setString(4, result.getString("model"));
@@ -297,6 +297,10 @@ public class addVehicle extends javax.swing.JFrame {
             statement.setString(6, result.getString("owner_name"));
             statement.setString(7, result.getString("color"));
             statement.setString(8, result.getString("vehicle_category"));
+            statement.setString(9, result.getString("cc"));
+            statement.setString(10, result.getString("engine_chase_number"));
+            statement.setString(11, result.getString("fitness_upto_date"));
+            
 
             statement.executeUpdate();
             return true;
