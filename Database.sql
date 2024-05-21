@@ -96,7 +96,7 @@ CREATE TABLE Payment (
     PaymentType varchar(10),
     FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID),
     FOREIGN KEY (registration_number) REFERENCES Vehicle_Details(registration_number),
-    FOREIGN KEY (PolicyID) REFERENCES List_of_Policies(PolicyID),
+    FOREIGN KEY (PolicyID) REFERENCES List_of_Policies(PolicyID)
 );
 
     
