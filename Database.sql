@@ -117,7 +117,7 @@ CREATE TABLE List_of_Policies (
 CREATE TABLE InsuredVehicle (
     Policy_Number INT AUTO_INCREMENT PRIMARY KEY,
     Registration_Number VARCHAR(255),
-    Policy_ID INT,
+    PolicyID INT,
     Policy_Status VARCHAR(20),
     Start_Date DATE,
     End_Date DATE,
@@ -125,7 +125,7 @@ CREATE TABLE InsuredVehicle (
     Max_Coverage DECIMAL(15, 2),
     Num_of_Claims INT DEFAULT 0,
     FOREIGN KEY (Registration_Number) REFERENCES vehicle_details(registration_number),
-    FOREIGN KEY (Policy_ID) REFERENCES List_of_Policies(Policy_ID)
+    FOREIGN KEY (PolicyID) REFERENCES List_of_Policies(PolicyID)
 );
 
 --Insert values into list of policies
