@@ -90,10 +90,13 @@ CREATE TABLE Payment (
     PaymentID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerID INT,
     registration_number VARCHAR(255),
+    PolicyID INT,
     Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10, 2),
+    PaymentType varchar(10),
     FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID),
-    FOREIGN KEY (registration_number) REFERENCES Vehicle_Details(registration_number)
+    FOREIGN KEY (registration_number) REFERENCES Vehicle_Details(registration_number),
+    FOREIGN KEY (PolicyID) REFERENCES List_of_Policies(PolicyID),
 );
 
     
