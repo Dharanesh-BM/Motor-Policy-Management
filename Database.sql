@@ -112,6 +112,22 @@ CREATE TABLE List_of_Policies (
     Exclusions TEXT,
     ClaimProcedure TEXT
 );
+
+-- Create Insured Vehicle table
+CREATE TABLE InsuredVehicle (
+    Policy_Number INT AUTO_INCREMENT PRIMARY KEY,
+    Registration_Number VARCHAR(255),
+    Policy_ID INT,
+    Policy_Status VARCHAR(20),
+    Start_Date DATE,
+    End_Date DATE,
+    Policy_Premium DECIMAL(10, 2),
+    Max_Coverage DECIMAL(15, 2),
+    Num_of_Claims INT DEFAULT 0,
+    FOREIGN KEY (Registration_Number) REFERENCES vehicle_details(registration_number),
+    FOREIGN KEY (Policy_ID) REFERENCES List_of_Policies(Policy_ID)
+);
+
 --Insert values into list of policies
 INSERT INTO List_of_Policies (PolicyID, PolicyName, Provider, VehicleType, ClaimsSettled, PolicyDuration, Highlights, Exclusions, ClaimProcedure)
 VALUES
