@@ -1,18 +1,5 @@
 # Motor Insurance Management System
 
-## Table of Contents
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Database Schema](#database-schema)
-- [ER Diagram](#er-diagram)
-- [Class Diagram](#class-diagram)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 ## Project Overview
 The Motor Insurance Management System is a desktop application designed to automate the process of managing motor insurance policies, claims, and customer information. The system aims to enhance efficiency, reduce manual errors, and provide a user-friendly interface for both administrators and customers.
 
