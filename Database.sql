@@ -137,11 +137,13 @@ CREATE TABLE Claim (
     date_time_of_incident DATETIME NOT NULL,
     location VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    type_of_claim VARCHAR(100) NOT NULL,
+    claim_type VARCHAR(100) NOT NULL,
+    claim_status VARCHAR(30) DEFAULT "Pending",
     fir_number VARCHAR(50) NOT NULL,
     registration_number VARCHAR(255) NOT NULL,
+    Policy_Number INT,
     additional_comments TEXT
-);
+)AUTO_INCREMENT=1500;;
 
 
 --Insert values into CardUpi
