@@ -96,6 +96,13 @@ CREATE TABLE Payment (
     PaymentType varchar(10)
 );
 
+--Create CardUpi table for card, UPI Verification
+CREATE TABLE CardUpi (
+  card_number VARCHAR(19) PRIMARY KEY, 
+  card_holder_name VARCHAR(255) NOT NULL,
+  upi_ID VARCHAR(100) UNIQUE     
+);
+
     
 -- Create List of policies table
 CREATE TABLE List_of_Policies (
@@ -123,6 +130,26 @@ CREATE TABLE InsuredVehicle (
     Max_Coverage DECIMAL(15, 2),
     Num_of_Claims INT DEFAULT 0
 );
+
+--Insert values into CardUpi
+INSERT INTO CardUpi (card_number, card_holder_name, upi_ID)
+VALUES
+('4111111111111111', 'Aarav Sharma', 'aarav@axis'),
+('4222222222222222', 'Vivaan Patel', 'vivaan@axis'),
+('4333333333333333', 'Aditya Kumar', 'aditya@axis'),
+('4444444444444444', 'Vihaan Singh', 'vihaan@upi'),
+('4555555555555555', 'Arjun Gupta', 'arjun@upi'),
+('4666666666666666', 'Sai Srinivas', 'sai@upi'),
+('4777777777777777', 'Reyansh Nair', 'reyansh@axis'),
+('4888888888888888', 'Ayaan Reddy', 'ayaan@upi'),
+('4999999999999999', 'Krishna Mehta', 'krishna@upi'),
+('4000000000000000', 'Ishaan Malhotra', 'ishaan@axis'),
+('4111222233334444', 'Kabir Das', 'kabir@upi'),
+('4222333344445555', 'Arnav Kaur', 'arnav@upi'),
+('4333444455556666', 'Ayaan Joshi', 'ayaan@axis'),
+('4444555566667777', 'Dev Patel', 'dev@axis'),
+('4555666677778888', 'Darsh Mishra', 'darsh@axis'),
+('1234567890123456' , 'Vivek', 'vivek@okhdfc');
 
 --Insert values into list of policies
 INSERT INTO List_of_Policies (PolicyID, PolicyName, Provider, VehicleType, ClaimsSettled, PolicyDuration, Highlights, Exclusions, ClaimProcedure, Max_Coverage_Constant)
