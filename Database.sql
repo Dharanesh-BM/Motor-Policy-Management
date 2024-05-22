@@ -158,7 +158,7 @@ VALUES
 ->Excludes coverage for vehicles used for competitive racing, speed testing, or stunts.
 ->Losses resulting from the vehicle''s depreciation or market value fluctuations over time.
 ->Damage caused by rodents, insects, or other pests may not be covered under standard policies.
-->Excludes coverage for vehicles that are not properly registered or do not meet safety requirements.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 25000.00),
+->Excludes coverage for vehicles that are not properly registered or do not meet safety requirements.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 32000.00),
 (3,'Bajaj Bike policy','Bajaj','Bike',97,12,'->Personalized premiums based on actual driving behavior and usage patterns.
 ->Real-time monitoring of driving habits such as speed, acceleration, and braking.
 ->Potential for significant savings for safe drivers with low-risk driving profiles.
@@ -171,7 +171,7 @@ VALUES
 ->Excludes coverage for driving violations such as speeding, reckless driving, or traffic violations.
 ->Losses resulting from driving in prohibited areas or engaging in prohibited activities.
 ->Excludes coverage for vehicles used for commercial purposes or transportation of hazardous materials.
-->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.-> Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 500000.00),
+->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.-> Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 150000.00),
 (4,'National bike policy','National','Bike',50,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
 ->Specialized coverage for antique, vintage, and classic cars with unique restoration needs.
 ->Flexible usage restrictions tailored to occasional or hobbyist driving habits.
@@ -184,7 +184,7 @@ VALUES
 ->Excludes coverage for incidents that occur while the vehicle is being used by an unauthorized driver.
 ->Losses resulting from mechanical failures, engine breakdowns, or normal wear and tear.
 ->Damage caused by acts of terrorism, war, civil unrest, or nuclear events may be excluded.
-->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 200000.00),
+->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 120000.00),
 (5,'Shriram bike policy','Shriram','Bike',55,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
 ->Covers the difference between the actual cash value of the vehicle and the amount owed on the loan or lease.
 ->Helps bridge the "gap" between the insurance payout and the remaining loan or lease balance.
@@ -197,7 +197,7 @@ VALUES
 ->Excludes coverage for vehicles that have been modified or altered without approval from the insurer.
 ->Losses resulting from pre-existing damage, rust, corrosion, or gradual deterioration.
 ->Damage caused by natural disasters such as earthquakes, floods, or hurricanes may be excluded.
-->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 30000.00),
+->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 130000.00),
 (6,'Reliance car Policy','Reliance','Car',98,12,'->Coverage for damages caused by natural disasters such as floods, earthquakes, and hurricanes.
 ->Protection against theft, vandalism, and other non-collision-related incidents.
 ->Reimbursement for towing and transportation costs in case of an accident.
@@ -210,7 +210,7 @@ VALUES
 ->Excludes coverage for regular maintenance and wear and tear of the vehicle.
 ->Losses resulting from driving outside of designated geographic areas or driving outside of approved hours.
 ->Excludes coverage for vehicles used for commercial purposes or ridesharing services.
-->Damage caused by natural disasters such as floods, earthquakes, and hurricanes may be excluded from standard policies.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 750000.00),
+->Damage caused by natural disasters such as floods, earthquakes, and hurricanes may be excluded from standard policies.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 175000.00),
 (7,'SBI car policy','SBI','Car',36,12,'->Legal coverage for bodily injury or death caused to third parties in an accident.
 ->Protection against property damage liabilities resulting from a covered accident.
 ->Coverage extends to legal expenses and court fees incurred during claims processing.
@@ -223,7 +223,7 @@ VALUES
 ->Excludes coverage for vehicles used for competitive racing, speed testing, or stunts.
 ->Losses resulting from the vehicle''s depreciation or market value fluctuations over time.
 ->Damage caused by rodents, insects, or other pests may not be covered under standard policies.
-->Excludes coverage for vehicles that are not properly registered or do not meet safety requirements.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 150000.00),
+->Excludes coverage for vehicles that are not properly registered or do not meet safety requirements.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 75000.00),
 (8,'Bajaj Car policy','Bajaj','Car',97,12,'->Personalized premiums based on actual driving behavior and usage patterns.
 ->Real-time monitoring of driving habits such as speed, acceleration, and braking.
 ->Potential for significant savings for safe drivers with low-risk driving profiles.
@@ -236,7 +236,7 @@ VALUES
 ->Excludes coverage for driving violations such as speeding, reckless driving, or traffic violations.
 ->Losses resulting from driving in prohibited areas or engaging in prohibited activities.
 ->Excludes coverage for vehicles used for commercial purposes or transportation of hazardous materials.
-->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 40000.00),
+->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 240000.00),
 (9,'National Car policy','National','Car',50,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
 ->Specialized coverage for antique, vintage, and classic cars with unique restoration needs.
 ->Flexible usage restrictions tailored to occasional or hobbyist driving habits.
@@ -249,7 +249,7 @@ VALUES
 ->Excludes coverage for incidents that occur while the vehicle is being used by an unauthorized driver.
 ->Losses resulting from mechanical failures, engine breakdowns, or normal wear and tear.
 ->Damage caused by acts of terrorism, war, civil unrest, or nuclear events may be excluded.
-->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 600000.00),
+->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 200000.00),
 (10,'Shriram Car policy','Shriram','Car',55,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
 ->Covers the difference between the actual cash value of the vehicle and the amount owed on the loan or lease.
 ->Helps bridge the "gap" between the insurance payout and the remaining loan or lease balance.
@@ -262,5 +262,5 @@ VALUES
 ->Excludes coverage for vehicles that have been modified or altered without approval from the insurer.
 ->Losses resulting from pre-existing damage, rust, corrosion, or gradual deterioration.
 ->Damage caused by natural disasters such as earthquakes, floods, or hurricanes may be excluded.
-->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 175000.00);
+->Excludes coverage for incidents that occur while the vehicle is being used for commercial purposes.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 185000.00);
 
