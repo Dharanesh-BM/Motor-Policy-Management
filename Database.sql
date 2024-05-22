@@ -93,10 +93,7 @@ CREATE TABLE Payment (
     PolicyID INT,
     Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Amount DECIMAL(10, 2),
-    PaymentType varchar(10),
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDetails(CustomerID),
-    FOREIGN KEY (registration_number) REFERENCES Vehicle_Details(registration_number),
-    FOREIGN KEY (PolicyID) REFERENCES List_of_Policies(PolicyID)
+    PaymentType varchar(10)
 );
 
     
