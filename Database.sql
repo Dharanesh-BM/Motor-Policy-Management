@@ -143,7 +143,7 @@ CREATE TABLE Claim (
     registration_number VARCHAR(255) NOT NULL,
     Policy_Number INT,
     additional_comments TEXT
-)AUTO_INCREMENT=1500;;
+)AUTO_INCREMENT=1500;
 
 
 --Insert values into CardUpi
