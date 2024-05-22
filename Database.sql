@@ -141,7 +141,7 @@ CREATE TABLE Claim (
     claim_status VARCHAR(30) DEFAULT "Pending",
     fir_number VARCHAR(50) NOT NULL,
     registration_number VARCHAR(255) NOT NULL,
-    claim_amount VARCHAR(25) DEFAULT 'NA'
+    claim_amount VARCHAR(25) DEFAULT 'NA',
     Policy_Number INT,
     additional_comments TEXT
 )AUTO_INCREMENT=1500;
