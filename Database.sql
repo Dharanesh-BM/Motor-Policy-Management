@@ -146,7 +146,7 @@ VALUES
 ->Excludes coverage for vehicles used for commercial purposes or ridesharing services.
 ->Damage caused by natural disasters such as floods, earthquakes, and hurricanes may be excluded from standard policies.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.
 ->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 100000.00),
-(2,'SBI bike policy','SBI','Bike',36,12,'->Legal coverage for bodily injury or death caused to third parties in an accident.
+(2,'SBI bike policy','SBI','Bike',99,12,'->Legal coverage for bodily injury or death caused to third parties in an accident.
 ->Protection against property damage liabilities resulting from a covered accident.
 ->Coverage extends to legal expenses and court fees incurred during claims processing.
 ->Financial security against lawsuits and settlements arising from third-party claims.
@@ -172,7 +172,7 @@ VALUES
 ->Losses resulting from driving in prohibited areas or engaging in prohibited activities.
 ->Excludes coverage for vehicles used for commercial purposes or transportation of hazardous materials.
 ->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.-> Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 150000.00),
-(4,'National bike policy','National','Bike',50,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
+(4,'National bike policy','National','Bike',95,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
 ->Specialized coverage for antique, vintage, and classic cars with unique restoration needs.
 ->Flexible usage restrictions tailored to occasional or hobbyist driving habits.
 ->Coverage for restoration costs, spare parts, and original equipment replacements.
@@ -185,7 +185,7 @@ VALUES
 ->Losses resulting from mechanical failures, engine breakdowns, or normal wear and tear.
 ->Damage caused by acts of terrorism, war, civil unrest, or nuclear events may be excluded.
 ->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 120000.00),
-(5,'Shriram bike policy','Shriram','Bike',55,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
+(5,'Shriram bike policy','Shriram','Bike',96,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
 ->Covers the difference between the actual cash value of the vehicle and the amount owed on the loan or lease.
 ->Helps bridge the "gap" between the insurance payout and the remaining loan or lease balance.
 ->Provides peace of mind by ensuring that you won''t be left with a financial burden after a loss.
@@ -211,7 +211,7 @@ VALUES
 ->Losses resulting from driving outside of designated geographic areas or driving outside of approved hours.
 ->Excludes coverage for vehicles used for commercial purposes or ridesharing services.
 ->Damage caused by natural disasters such as floods, earthquakes, and hurricanes may be excluded from standard policies.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 175000.00),
-(7,'SBI car policy','SBI','Car',36,12,'->Legal coverage for bodily injury or death caused to third parties in an accident.
+(7,'SBI car policy','SBI','Car',96,12,'->Legal coverage for bodily injury or death caused to third parties in an accident.
 ->Protection against property damage liabilities resulting from a covered accident.
 ->Coverage extends to legal expenses and court fees incurred during claims processing.
 ->Financial security against lawsuits and settlements arising from third-party claims.
@@ -237,7 +237,7 @@ VALUES
 ->Losses resulting from driving in prohibited areas or engaging in prohibited activities.
 ->Excludes coverage for vehicles used for commercial purposes or transportation of hazardous materials.
 ->Damage caused by mechanical failures or pre-existing conditions of the vehicle may not be covered.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 240000.00),
-(9,'National Car policy','National','Car',50,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
+(9,'National Car policy','National','Car',93,12,'->Agreed value coverage to ensure full compensation for the vehicle''s appraised value.
 ->Specialized coverage for antique, vintage, and classic cars with unique restoration needs.
 ->Flexible usage restrictions tailored to occasional or hobbyist driving habits.
 ->Coverage for restoration costs, spare parts, and original equipment replacements.
@@ -250,7 +250,7 @@ VALUES
 ->Losses resulting from mechanical failures, engine breakdowns, or normal wear and tear.
 ->Damage caused by acts of terrorism, war, civil unrest, or nuclear events may be excluded.
 ->Excludes coverage for incidents that occur while the vehicle is being used for racing or speed.','->In the event of an incident giving rise to a claim under the policy, the following steps should be taken.->Lodge an FIR with the police immediately.->Immediate written intimation to the policy issuing office or nearest office or online portal.->Obtain a Claim Form & submit it duly completed.->Extend full cooperation to the investigator appointed by the insurance company.', 200000.00),
-(10,'Shriram Car policy','Shriram','Car',55,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
+(10,'Shriram Car policy','Shriram','Car',97,12,'->Protection against financial loss in case of a total loss or theft of the vehicle.
 ->Covers the difference between the actual cash value of the vehicle and the amount owed on the loan or lease.
 ->Helps bridge the "gap" between the insurance payout and the remaining loan or lease balance.
 ->Provides peace of mind by ensuring that you won''t be left with a financial burden after a loss.
