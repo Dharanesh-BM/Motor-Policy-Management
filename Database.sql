@@ -131,6 +131,19 @@ CREATE TABLE InsuredVehicle (
     Num_of_Claims INT DEFAULT 0
 );
 
+-- Create table Claim
+CREATE TABLE Claim (
+    claim_ID INT AUTO_INCREMENT PRIMARY KEY,
+    date_time_of_incident DATETIME NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    type_of_claim VARCHAR(100) NOT NULL,
+    fir_number VARCHAR(50) NOT NULL,
+    registration_number VARCHAR(255) NOT NULL,
+    additional_comments TEXT
+);
+
+
 --Insert values into CardUpi
 INSERT INTO CardUpi (card_number, card_holder_name, upi_ID)
 VALUES
