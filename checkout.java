@@ -29,8 +29,9 @@ public class checkout extends javax.swing.JFrame {
      * Creates new form checkout
     */
     String VehicleNumber;
-    int PolicyID,Amount;
-    public checkout(String VehicleNumber,int PolicyID,int Amount) {
+    int PolicyID;
+    double Amount;
+    public checkout(String VehicleNumber,int PolicyID,double Amount) {
         this.VehicleNumber = VehicleNumber;
         this.PolicyID = PolicyID;
         this.Amount = Amount;
@@ -460,19 +461,19 @@ public class checkout extends javax.swing.JFrame {
 
     private void card_PanelMouseClicked(java.awt.event.MouseEvent evt) {                                        
     // Increase the size of the icon
-    card_Panel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-    UPI_Panel.setBorder(null); // Remove border highlight from UPI_Panel
-    upi_card_no_panel.setVisible(true);
-    set_upicard_label.setText("Enter Card Number: ");
-    cvv_exp_panel.setVisible(true);
-    make_payment_panel.setVisible(true);
-    upi_card_no_input_textfield.setText(" ");
-    selectedPaymentMethod = "Card";
+        card_Panel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        UPI_Panel.setBorder(null); // Remove border highlight from UPI_Panel
+        upi_card_no_panel.setVisible(true);
+        set_upicard_label.setText("Enter Card Number: ");
+        cvv_exp_panel.setVisible(true);
+        make_payment_panel.setVisible(true);
+        upi_card_no_input_textfield.setText(" ");
+        selectedPaymentMethod = "Card";
 
     // if(upi_card_no_input_textfield.getText().length()< 16 || upi_card_no_input_textfield.getText().length()> 19 ){
     //         JOptionPane.showMessageDialog(null, "Card number should be between 16 to 19 digits", "ERROR", JOptionPane.ERROR_MESSAGE);
     //     }
-} 
+    } 
 
     private void card_PanelMouseEntered(java.awt.event.MouseEvent evt) {                                        
         // TODO add your handling code here:
@@ -483,14 +484,14 @@ public class checkout extends javax.swing.JFrame {
     }                                      
 
     private void UPI_PanelMouseClicked(java.awt.event.MouseEvent evt) {                                       
-    UPI_Panel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-    card_Panel.setBorder(null); // Remove border highlight from card_Panel
-    upi_card_no_panel.setVisible(true);
-    set_upicard_label.setText("Enter UPI ID: ");
-    cvv_exp_panel.setVisible(false);
-    make_payment_panel.setVisible(true);
-    upi_card_no_input_textfield.setText("");
-    selectedPaymentMethod = "UPI";
+        UPI_Panel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        card_Panel.setBorder(null); // Remove border highlight from card_Panel
+        upi_card_no_panel.setVisible(true);
+        set_upicard_label.setText("Enter UPI ID: ");
+        cvv_exp_panel.setVisible(false);
+        make_payment_panel.setVisible(true);
+        upi_card_no_input_textfield.setText("");
+        selectedPaymentMethod = "UPI";
 
     // if (!upi_card_no_input_textfield.getText().contains("@")) {
     //     JOptionPane.showMessageDialog(null, "Invalid UPI ID. UPI ID should contain '@'", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -554,7 +555,24 @@ public class checkout extends javax.swing.JFrame {
             return;
         }
 
-        
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "SELECT * FROM CardUpi WHERE card_number = ?;";
+            PreparedStatement statement = conn.prepareStatement(query); 
+            statement.setString(1, paymentDetails);
+            result = statement.executeQuery();
+
+            if(result.next()){
+                
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter valid Card number","ERROR",JOptionPane.ERROR_MESSAGE);
+                upi_card_no_input_textfield.setText("");
+                return;
+
+            }
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
     } 
     
     else {
@@ -563,17 +581,41 @@ public class checkout extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid UPI ID format.", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "SELECT * FROM CardUpi WHERE upi_ID = ?;";
+            PreparedStatement statement = conn.prepareStatement(query); 
+            statement.setString(1, paymentDetails);
+            result = statement.executeQuery();
+
+            if(result.next()){
+                
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter valid UPI ID","ERROR",JOptionPane.ERROR_MESSAGE);
+                upi_card_no_input_textfield.setText("");
+                return;
+
+            }
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
     
     // If all validations pass, show payment success message
-    JOptionPane.showMessageDialog(this, "Payment Successful");
-    StorePaymentValues();
-    StoreInsuredVehicles();
-    this.setVisible(false);
-    new UserHomePage(0).setVisible(true);
+
+    if(StorePaymentValues() && StoreInsuredVehicles()){
+
+        JOptionPane.showMessageDialog(this, "Payment Successful!\nVehicle is insured");
+        new UserHomePage(DBConnector.getCustomerID_UsingVehicleNumber(VehicleNumber)).setVisible(true);
+        this.dispose();
+    }
+    else{
+        JOptionPane.showMessageDialog(this, "Error in storing and payment");
+    }
+
 
     }  
-    private void StorePaymentValues(){
+    private boolean StorePaymentValues(){
     try(Connection conn = DBConnector.getConnection()){
         String Query = "INSERT INTO Payment(CustomerID,registration_number,PolicyID,Amount,PaymentType) VALUES(?,?,?,?,?)";
         PreparedStatement statement = conn.prepareStatement(Query);
@@ -581,24 +623,25 @@ public class checkout extends javax.swing.JFrame {
         statement.setInt(1, DBConnector.getCustomerID_UsingVehicleNumber(VehicleNumber));
         statement.setString(2, VehicleNumber);
         statement.setInt(3, PolicyID);
-        statement.setInt(4, Amount);
+        statement.setDouble(4, Amount);
         statement.setString(5, selectedPaymentMethod);
 
         int rowsInserted = statement.executeUpdate();
+        return rowsInserted > 0;
+
     } catch (SQLException ex) {
-        ex.printStackTrace();
-    }
+            ex.printStackTrace();
+            return false;
+        }
     }
 
-    private void StoreInsuredVehicles(){
+    private boolean StoreInsuredVehicles(){
     try(Connection conn = DBConnector.getConnection()){
         String Query = "INSERT INTO InsuredVehicle(Registration_Number,PolicyID,Policy_Status,Start_Date,End_Date,Policy_Premium,Max_Coverage,Num_of_Claims) VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement statement = conn.prepareStatement(Query);
 
-        String VehicleNumber = "your_vehicle_number"; // Assign the actual vehicle number
-        int PolicyID = 123; // Assign the actual policy ID
-        double Policy_Premium = 1000.00; // Assign the actual policy premium
-        double Max_Coverage = 50000.00; // Assign the actual maximum coverage
+        double Policy_Premium = PolicyPremiumCalculator.getPremiuim_UsingPolicyID(PolicyID, VehicleNumber); // Assign the actual policy premium
+        double Max_Coverage = MaxCoverageCalculator.getMaxCoverage_usingPolicyID(PolicyID,VehicleNumber);
         PreparedStatement st = conn.prepareStatement("Select PolicyDuration FROM List_of_Policies WHERE PolicyID = " + PolicyID);
         ResultSet rs = st.executeQuery(); rs.next();
         int n = rs.getInt("PolicyDuration"); // Number of months after which the policy ends
@@ -619,8 +662,11 @@ public class checkout extends javax.swing.JFrame {
 
 
         int rowsInserted = statement.executeUpdate();
+        return rowsInserted > 0;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
     private void upi_card_no_input_textfieldFocusLost(java.awt.event.FocusEvent evt) {                                                      
@@ -712,6 +758,6 @@ private void expiryyear_textfieldFocusLost(java.awt.event.FocusEvent evt) {
     private javax.swing.JPanel upi_card_no_panel;
     private javax.swing.JLabel upi_image_label;
     private String selectedPaymentMethod = "Card"; // Default to Card
-
+    private static ResultSet result;
     // End of variables declaration                   
 }

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.cj.xdevapi.PreparableStatement;
 
 /*
@@ -25,9 +27,14 @@ public class PolicyInfo extends javax.swing.JFrame {
      * Creates new form PolicyInfo
      */
     private int PolicyID;
-    public PolicyInfo(int PID) {
+    String VehicleNumber;
+    double Amount;
+    public PolicyInfo(int PID,String VehicleNumber, double Amount) {
         this.PolicyID = PID;
         // this.PolicyID = 1;
+        this.VehicleNumber = VehicleNumber;
+        // JOptionPane.showMessageDialog(this, Amount);
+        this.Amount = Amount;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -59,6 +66,7 @@ public class PolicyInfo extends javax.swing.JFrame {
         Companyname_label.setForeground(new java.awt.Color(24, 116, 227));
         Companyname_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Companyname_label.setText("BMV Bazaar");
+        Companyname_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Companyname_label.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Companyname_labelMouseClicked(evt);
@@ -209,11 +217,12 @@ public class PolicyInfo extends javax.swing.JFrame {
 
     private void confirm_purchase_ButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         this.dispose();
-        new checkout("",0,0).setVisible(true);
+        new checkout(VehicleNumber,PolicyID,Amount).setVisible(true);
     }                                                       
 
     private void Companyname_labelMouseClicked(java.awt.event.MouseEvent evt) {                                               
-        // TODO add your handling code here:
+        this.dispose();
+        new UserHomePage(DBConnector.getCustomerID_UsingVehicleNumber(VehicleNumber)).setVisible(true);
     }                                              
 
     private void highlights_LabelMouseClicked(java.awt.event.MouseEvent evt) {                                              
@@ -304,7 +313,7 @@ public class PolicyInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PolicyInfo(0).setVisible(true);
+                new PolicyInfo(0,"",0).setVisible(true);
             }
         });
     }

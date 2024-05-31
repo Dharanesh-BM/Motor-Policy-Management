@@ -136,7 +136,7 @@ import java.sql.SQLException;
                 }
              }
              public void mouseClicked(java.awt.event.MouseEvent evt){
-                new ClaimPolicy().setVisible(true);
+                new UserSelectClaimVehicle(CustomerID).setVisible(true);
              }
          });
  
@@ -311,6 +311,9 @@ import java.sql.SQLException;
                     claim_status_label1.setBorder(((CompoundBorder) originalBorder).getOutsideBorder());
                 }
              }
+             public void mouseClicked(java.awt.event.MouseEvent evt){
+                Claim_statusMouseClicked(evt);
+         }
          });
  
          javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -404,8 +407,11 @@ import java.sql.SQLException;
         
     }
     private void view_vehicle_labelMouseClicked(java.awt.event.MouseEvent evt){
-        new UserViewVehicle_Select(CustomerID).setVisible(true);;
+        new UserViewVehicle_Select(CustomerID).setVisible(true);
         this.dispose();
+    }
+    private void Claim_statusMouseClicked(java.awt.event.MouseEvent evt){
+        new ClaimStatus(CustomerID).setVisible(true);
     }
      /**
       * @param args the command line arguments

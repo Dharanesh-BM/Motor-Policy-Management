@@ -18,6 +18,8 @@ public class AdminClaimPending extends javax.swing.JFrame {
      */
     public AdminClaimPending() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -351,7 +353,14 @@ public class AdminClaimPending extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        back_label.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Desktop\\java project\\previouspage.png")); // NOI18N
+        back_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/previouspage.png"))); // NOI18N
+        back_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -428,7 +437,11 @@ public class AdminClaimPending extends javax.swing.JFrame {
 
     private void next_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }                                           
+    }    
+    private void back_ButtonActionPerformed(java.awt.event.MouseEvent evt){
+        this.dispose();
+        new AdminViewClaims().setVisible(true);
+    }                                       
 
     /**
      * @param args the command line arguments

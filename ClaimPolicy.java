@@ -1,5 +1,14 @@
 package com.example;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,18 +16,20 @@ package com.example;
 
 /**
  *
- * @author Deepak
+ * @author Lenovo
  */
 public class ClaimPolicy extends javax.swing.JFrame {
 
     /**
-     * Creates new form claims
-     */
-    public ClaimPolicy() {
+     * Creates new form claim_policy_for_vehicle
+     */    
+    int CustomerID;
+    String VehicleNumber;
+    public ClaimPolicy(int CustomerID,String VehicleNUmber) {
         initComponents();
+        this.setResizable(false);
+        this.CustomerID = CustomerID;
         this.setLocationRelativeTo(null);
-        // this.setResizable(false);
-
     }
 
     /**
@@ -30,7 +41,6 @@ public class ClaimPolicy extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         CLAIMS_l = new javax.swing.JLabel();
         Incident_details_l = new javax.swing.JLabel();
@@ -38,34 +48,30 @@ public class ClaimPolicy extends javax.swing.JFrame {
         Description_i_l = new javax.swing.JLabel();
         Location_l = new javax.swing.JLabel();
         CLAIM_DETAILS_L = new javax.swing.JLabel();
-        Type_of_calim_l = new javax.swing.JLabel();
-        Description_c_l = new javax.swing.JLabel();
-        Attachments_l = new javax.swing.JLabel();
+        Type_of_claim_l = new javax.swing.JLabel();
         Additionnal_comments_l = new javax.swing.JLabel();
         CANCEL = new java.awt.Button();
         SUBMIT = new java.awt.Button();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        Description_c = new javax.swing.JTextArea();
-        Attachments = new javax.swing.JFileChooser();
         jScrollPane5 = new javax.swing.JScrollPane();
         Additionnal_comments = new javax.swing.JTextArea();
-        Type_of_calim = new javax.swing.JComboBox<>();
+        Type_of_claim = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         Description_i = new javax.swing.JTextArea();
         Date_and_time = new com.toedter.calendar.JDateChooser();
-        Type_of_calim1 = new javax.swing.JComboBox<>();
+        Location = new javax.swing.JComboBox<>();
         FIR_number = new javax.swing.JTextField();
         FIR_number_l1 = new javax.swing.JLabel();
         verify = new javax.swing.JButton();
+        back_button_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CLAIMS_l.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         CLAIMS_l.setForeground(new java.awt.Color(0, 51, 255));
-        CLAIMS_l.setText("CLAIM POLICY FOR VEHICLE");
+        CLAIMS_l.setText(" CLAIM POLICY FOR VEHICLE ");
 
         Incident_details_l.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Incident_details_l.setText("INCIDENT DETAILS   :");
+        Incident_details_l.setText("Incident details   :");
 
         Date_and_time_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Date_and_time_l.setText("Date & Time                          :  ");
@@ -77,16 +83,10 @@ public class ClaimPolicy extends javax.swing.JFrame {
         Location_l.setText("Location                                :");
 
         CLAIM_DETAILS_L.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CLAIM_DETAILS_L.setText("CLAIM DETAILS :");
+        CLAIM_DETAILS_L.setText("Claim details :");
 
-        Type_of_calim_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Type_of_calim_l.setText("Type of claim                        :");
-
-        Description_c_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Description_c_l.setText("Description                            :");
-
-        Attachments_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Attachments_l.setText("Attachments                        :");
+        Type_of_claim_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Type_of_claim_l.setText("Type of claim                        :");
 
         Additionnal_comments_l.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Additionnal_comments_l.setText("Additional comments         :");
@@ -130,27 +130,17 @@ public class ClaimPolicy extends javax.swing.JFrame {
             }
         });
 
-        Description_c.setColumns(20);
-        Description_c.setRows(5);
-        jScrollPane4.setViewportView(Description_c);
-
-        Attachments.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AttachmentsActionPerformed(evt);
-            }
-        });
-
         Additionnal_comments.setColumns(20);
         Additionnal_comments.setRows(5);
         jScrollPane5.setViewportView(Additionnal_comments);
 
-        Type_of_calim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose claim", "Accident claim", "Theft claim", "Fire damage claim", "Natural calamity claim", "PIP(personal ingury protection) calim", "Vandalism claim", "Accidental death ", "Third-party accident" }));
+        Type_of_claim.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose claim", "Accident claim", "Theft claim", "Fire damage claim", "Natural calamity claim", "PIP(personal ingury protection) calim", "Vandalism claim", "Accidental death ", "Third-party accident" }));
 
         Description_i.setColumns(20);
         Description_i.setRows(5);
         jScrollPane2.setViewportView(Description_i);
 
-        Type_of_calim1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose the location", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Lakshadweep", "Delhi (National Capital Territory of Delhi)", "Puducherry", "Ladakh", "Lakshadweep" }));
+        Location.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose the location", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Lakshadweep", "Delhi (National Capital Territory of Delhi)", "Puducherry", "Ladakh", "Lakshadweep" }));
 
         FIR_number_l1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         FIR_number_l1.setText("FIR number                          :");
@@ -173,12 +163,22 @@ public class ClaimPolicy extends javax.swing.JFrame {
             }
         });
 
+        back_button_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/previouspage.png"))); // NOI18N
+        back_button_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back_button_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back_button_labelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(415, 415, 415)
+                .addContainerGap()
+                .addComponent(back_button_label)
+                .addGap(284, 284, 284)
                 .addComponent(CLAIMS_l)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -192,22 +192,17 @@ public class ClaimPolicy extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CLAIM_DETAILS_L, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Type_of_calim_l, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Type_of_claim_l, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(Attachments_l, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                                            .addComponent(Additionnal_comments_l, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(Additionnal_comments_l, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Attachments, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(SUBMIT, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(Description_c_l, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 83, Short.MAX_VALUE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(SUBMIT, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 301, Short.MAX_VALUE)))
                         .addContainerGap(2, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,22 +216,26 @@ public class ClaimPolicy extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Date_and_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2)
-                                    .addComponent(Type_of_calim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane4)
-                                    .addComponent(Type_of_calim1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Type_of_claim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(FIR_number))
-                                .addGap(49, 49, 49)
+                                .addGap(18, 18, 18)
                                 .addComponent(verify)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 211, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(SUBMIT, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(back_button_label)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(CLAIMS_l, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(Incident_details_l, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +244,7 @@ public class ClaimPolicy extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Location_l, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Type_of_calim1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(Date_and_time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -258,59 +257,62 @@ public class ClaimPolicy extends javax.swing.JFrame {
                                 .addComponent(CLAIM_DETAILS_L, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Type_of_calim_l, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Type_of_calim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Description_c_l, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
+                            .addComponent(Type_of_claim_l, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Type_of_claim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(FIR_number, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FIR_number_l1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(verify))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Attachments_l, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Attachments, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Additionnal_comments_l, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
-                        .addComponent(CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(242, Short.MAX_VALUE))
+                        .addComponent(CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SUBMIT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
-
-        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
+            .addGap(0, 1148, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(75, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1437, Short.MAX_VALUE)
+            .addGap(0, 756, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>                        
 
-    private void AttachmentsActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void CANCELMouseEntered(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
-    }                                           
+        CANCEL.setBackground(new java.awt.Color(255, 0, 0));
+        CANCEL.setForeground(new java.awt.Color(0, 0, 0));
+    }                                   
+
+    private void CANCELMouseExited(java.awt.event.MouseEvent evt) {                                   
+        // TODO add your handling code here:
+        CANCEL.setBackground(new java.awt.Color(0, 0, 0));
+        CANCEL.setForeground(new java.awt.Color(255, 255, 255));
+    }                                  
 
     private void CANCELActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
-
-    private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
+        new UserSelectClaimVehicle(CustomerID).setVisible(true);
+        this.dispose();
     }                                      
 
     private void SUBMITMouseEntered(java.awt.event.MouseEvent evt) {                                    
@@ -325,22 +327,78 @@ public class ClaimPolicy extends javax.swing.JFrame {
         SUBMIT.setForeground(new java.awt.Color(255, 255, 255));
     }                                  
 
-    private void CANCELMouseEntered(java.awt.event.MouseEvent evt) {                                    
-        // TODO add your handling code here:
-        CANCEL.setBackground(new java.awt.Color(255, 0, 0));
-        CANCEL.setForeground(new java.awt.Color(0, 0, 0));
-    }                                   
+    private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        String firNumber = FIR_number.getText();
+        java.util.Date incidentDate = Date_and_time.getDate();
+        String incidentDescription = Description_i.getText();
+        String location = (String) Location.getSelectedItem();
+        String claimType = (String) Type_of_claim.getSelectedItem();
+        String additionalComments = Additionnal_comments.getText();
 
-    private void CANCELMouseExited(java.awt.event.MouseEvent evt) {                                   
-        // TODO add your handling code here:
-        CANCEL.setBackground(new java.awt.Color(0, 0, 0));
-        CANCEL.setForeground(new java.awt.Color(255, 255, 255));
-    }                                  
+        // Generate a random 6-digit claim ID
+        // Random random = new Random();
+        // int randomInt = 100000 + random.nextInt(900000);
+        // String claimId = String.valueOf(randomInt);
 
-    private void verifyActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
+        // Convert date to SQL date
+        java.sql.Date sqlDate = new java.sql.Date(incidentDate.getTime());
+
+        // Collect file paths of selected attachments
+
+        // Insert the data into the database
+        try(Connection conn = DBConnector.getConnection();) {
+            
+            String sql = "INSERT INTO Claim (date_time_of_incident,location,description,claim_type,claim_status,fir_number,registration_number,Policy_Number,additional_comments) VAULES (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setDate(1, sqlDate);
+            pstmt.setString(2, location);
+            pstmt.setString(3, incidentDescription);
+            pstmt.setString(4, claimType);
+            pstmt.setString(5, "Pending");
+            pstmt.setString(6, firNumber);
+            pstmt.setString(7, VehicleNumber);
+            pstmt.setInt(8, getPolicyNumber(VehicleNumber));
+            
+            pstmt.setString(9, additionalComments);
+            pstmt.executeUpdate();
+            conn.close();
+
+            // Show a success message
+            JOptionPane.showMessageDialog(this, "Claim submitted successfully with Claim ID: " + getClaimID(VehicleNumber));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Show an error message
+            JOptionPane.showMessageDialog(this, "Error submitting claim. Please try again.");
+        }
     }                                      
 
+    private int getPolicyNumber(String VehicleNumber){
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "Select * from InsuredVehicle where Registration_Number = '" + VehicleNumber + "'";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            if(result.next()){
+                return result.getInt("Policy_Number");
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0; 
+    }
+    private int getClaimID(String VehicleNumber){
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "Select * from Claim where Registration_Number = '" + VehicleNumber + "'";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            if(result.next()){
+                return result.getInt("claim_ID");
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0; 
+    }
     private void verifyMouseEntered(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
         verify.setForeground(new java.awt.Color(0, 0, 0));
@@ -350,6 +408,30 @@ public class ClaimPolicy extends javax.swing.JFrame {
         // TODO add your handling code here:
         verify.setForeground(new java.awt.Color(255, 255, 255));
     }                                  
+
+    private void verifyActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        try (Connection conn = DBConnector.getConnection()){
+            String query = "SELECCT * FROM FIR_Table WHERE FIR_Number = ? AND Vehicle_Number = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, Integer.parseInt(FIR_number.getText()));
+            statement.setString(2, VehicleNumber);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()){
+                JOptionPane.showMessageDialog(this, "FIR is verifired","Verified",JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid FIR!","Invalid",JOptionPane.ERROR_MESSAGE);
+                FIR_number.setText("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }                                      
+
+    private void back_button_labelMouseClicked(java.awt.event.MouseEvent evt) {                                               
+        new UserSelectClaimVehicle(CustomerID).setVisible(true);
+        this.dispose();
+    }                                              
 
     /**
      * @param args the command line arguments
@@ -381,7 +463,7 @@ public class ClaimPolicy extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClaimPolicy().setVisible(true);
+                new ClaimPolicy(0,"").setVisible(true);
             }
         });
     }
@@ -389,15 +471,11 @@ public class ClaimPolicy extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JTextArea Additionnal_comments;
     private javax.swing.JLabel Additionnal_comments_l;
-    private javax.swing.JFileChooser Attachments;
-    private javax.swing.JLabel Attachments_l;
     private java.awt.Button CANCEL;
     private javax.swing.JLabel CLAIMS_l;
     private javax.swing.JLabel CLAIM_DETAILS_L;
     private com.toedter.calendar.JDateChooser Date_and_time;
     private javax.swing.JLabel Date_and_time_l;
-    private javax.swing.JTextArea Description_c;
-    private javax.swing.JLabel Description_c_l;
     private javax.swing.JTextArea Description_i;
     private javax.swing.JLabel Description_i_l;
     private javax.swing.JTextField FIR_number;
@@ -405,13 +483,12 @@ public class ClaimPolicy extends javax.swing.JFrame {
     private javax.swing.JLabel Incident_details_l;
     private javax.swing.JLabel Location_l;
     private java.awt.Button SUBMIT;
-    private javax.swing.JComboBox<String> Type_of_calim;
-    private javax.swing.JComboBox<String> Type_of_calim1;
-    private javax.swing.JLabel Type_of_calim_l;
+    private javax.swing.JComboBox<String> Type_of_claim;
+    private javax.swing.JComboBox<String> Location;
+    private javax.swing.JLabel Type_of_claim_l;
+    private javax.swing.JLabel back_button_label;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton verify;
     // End of variables declaration                   

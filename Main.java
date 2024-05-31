@@ -18,6 +18,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        this.setTitle("Motor insuranace management system");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }

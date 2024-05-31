@@ -16,11 +16,13 @@ public class ClaimStatus extends javax.swing.JFrame {
     /**
      * Creates new form ClaimStatus
      */
-    public ClaimStatus() {
+    int CustomerID;
+    public ClaimStatus(int CustomerID) {
+        this.CustomerID = CustomerID;
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setSize(900,550);
+        // this.setSize(900,550);
     }
 
     /**
@@ -98,6 +100,11 @@ public class ClaimStatus extends javax.swing.JFrame {
 
         back_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/previouspage.png"))); // NOI18N
         back_Button.setText(" ");
+        back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout claim_Entry_PanelLayout = new javax.swing.GroupLayout(claim_Entry_Panel);
         claim_Entry_Panel.setLayout(claim_Entry_PanelLayout);
@@ -220,7 +227,10 @@ public class ClaimStatus extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+    private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt){
+        this.dispose();
+        new UserHomePage(CustomerID).setVisible(true);
+    }
     private void submit_ButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         table_panel.setVisible(true);  
         String claim_no = claim_reg_no_inputtextfield.getText();                                          
@@ -289,7 +299,7 @@ public class ClaimStatus extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClaimStatus().setVisible(true);
+                new ClaimStatus(0).setVisible(true);
             }
         });
     }

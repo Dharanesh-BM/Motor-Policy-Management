@@ -18,14 +18,14 @@ import com.mysql.cj.xdevapi.PreparableStatement;
  *
  * @author vivek
  */
-public class vehicleSelectionPolicy extends javax.swing.JFrame {
+public class UserSelectClaimVehicle extends javax.swing.JFrame {
 
     /**
      * Creates new form vehicleselection
      */
     int CustomerID;
-    String VehicleType;
-    public vehicleSelectionPolicy(int CustomerID) {
+    String VehicleNumber;
+    public UserSelectClaimVehicle(int CustomerID) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -179,43 +179,18 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
     }
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         String Vehicle = (String) choose_vehicle_combobox.getSelectedItem();
-        if(Vehicle == null){
-            JOptionPane.showMessageDialog(this, "Invalid selection","Invalid selection",JOptionPane.ERROR_MESSAGE);
-        } else if(isPolicyActive(Vehicle)){
-            JOptionPane.showMessageDialog(this,"Vehicle already have a policy","Invalid",JOptionPane.ERROR_MESSAGE);
+        if(Vehicle==null){
+            JOptionPane.showMessageDialog(this, "No Vehicle selected");
         } else {
             this.setVisible(false);
-            try(Connection conn = DBConnector.getConnection()){
-                PreparedStatement statement = conn.prepareStatement("SELECT * FROM Vehicle_Details WHERE registration_number = '" + Vehicle + "'");
-                ResultSet result = statement.executeQuery();
-                result.next();
-                this.VehicleType = result.getString("vehicle_category");
-            } catch (SQLException ex){ex.printStackTrace();}
-            new PolicyPage(Vehicle,VehicleType).setVisible(true);
+            new ClaimPolicy(CustomerID,VehicleNumber).setVisible(true);
         }
     }                                            
 
     private void choose_vehicle_comboboxActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         
     }                                                       
-    private boolean isPolicyActive(String Vehicle){
-        try(Connection conn = DBConnector.getConnection()) {
-            String query = "SELECT * FROM InsuredVehicle WHERE Registration_Number = '" + Vehicle + "'";
-            PreparedStatement statement = conn.prepareStatement(query);
-            ResultSet result = statement.executeQuery();
 
-            if(result.next()){
-                if(result.getString("Policy_Status").equals("Active")){
-                    return true;
-                }
-                else return false;
-            }
-            return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -233,20 +208,20 @@ public class vehicleSelectionPolicy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vehicleSelectionPolicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserSelectClaimVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vehicleSelectionPolicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserSelectClaimVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vehicleSelectionPolicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserSelectClaimVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vehicleSelectionPolicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserSelectClaimVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vehicleSelectionPolicy(0).setVisible(true);
+                new UserSelectClaimVehicle(0).setVisible(true);
             }
         });
     }

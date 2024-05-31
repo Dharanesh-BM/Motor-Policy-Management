@@ -57,6 +57,11 @@ public class AdminViewClaims extends javax.swing.JFrame {
         pending.setForeground(new java.awt.Color(255, 255, 255));
         pending.setText("Pending");
         pending.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pending.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pendingMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,7 +132,11 @@ public class AdminViewClaims extends javax.swing.JFrame {
 
     private void accept_rejectMouseClicked(java.awt.event.MouseEvent evt) {                                           
         // TODO add your handling code here:
-    }                                          
+    }      
+    private void pendingMouseClicked(java.awt.event.MouseEvent evt){
+        this.dispose();
+        new AdminClaimPending().setVisible(true);
+    }                                    
 
     /**
      * @param args the command line arguments

@@ -183,7 +183,7 @@ public class UserViewVehicle_Select extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No Vehicle selected");
         } else {
             this.setVisible(false);
-            new UserSelectVehicle(Vehicle).setVisible(true);
+            new UserDisplayVehicle(Vehicle).setVisible(true);
         }
     }                                            
 

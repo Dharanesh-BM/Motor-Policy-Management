@@ -1,6 +1,9 @@
 package com.example;
 
 import javax.swing.JOptionPane;
+
+import com.mysql.cj.protocol.Resultset;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +24,10 @@ public class PolicyPage extends javax.swing.JFrame {
     /**
      * Creates new form policypage
      */
+    String VehicleNumber,Vtype;
     public PolicyPage(String VehicleNumber,String Vtype) {
+        this.VehicleNumber = VehicleNumber;
+        this. Vtype = Vtype;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -60,6 +66,13 @@ public class PolicyPage extends javax.swing.JFrame {
         Companyname_label.setForeground(new java.awt.Color(24, 116, 227));
         Companyname_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Companyname_label.setText("BMV Bazaar");
+        Companyname_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Companyname_label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                Companyname_labelMouseClicked();
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,7 +158,7 @@ public class PolicyPage extends javax.swing.JFrame {
                         .addComponent(Policyprice_label, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(insurancename_pic_label, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(insurancename_pic_label, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(maxcoverage_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -157,7 +170,7 @@ public class PolicyPage extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(insurancename_pic_label, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insurancename_pic_label, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maxcoverage_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maxcoverage_price, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -311,12 +324,52 @@ public class PolicyPage extends javax.swing.JFrame {
         claims_settled_percent_label.setText(result.getString("ClaimsSettled"));
         // insurancename_pic_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/"+result.getString("Provider")+".png")));
         insurancename_pic_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/"+result.getString("Provider")+".gif.png")));
+        maxcoverage_price.setText(Double.toString(getMaxCoverage(VehicleNumber)));  // casting double to string
+        Policyprice_label.setText(Double.toString(getPremium(VehicleNumber)));
+        
     }
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                             
-        new PolicyInfo(result.getInt("PolicyID")).setVisible(true);
+    private double getMaxCoverage(String VehicleNumber){
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "SELECT * FROM Vehicle_Details WHERE registration_number = '" + VehicleNumber +"'";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return MaxCoverageCalculator.calculateMaxCoverage(rs.getInt("year"),result.getDouble("Max_Coverage_Constant"),Vtype);
+            } else {
+                JOptionPane.showMessageDialog(this, "No vehicle found","",JOptionPane.ERROR_MESSAGE);
+                return -1;
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    private double getPremium(String VehicleNumber){
+        try(Connection conn = DBConnector.getConnection()){
+            String query = "SELECT * FROM Vehicle_Details WHERE registration_number = '" + VehicleNumber +"'";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                return PolicyPremiumCalculator.calculatePolicyPremium(rs.getInt("year"),result.getDouble("Max_Coverage_Constant"),Vtype);
+            } else {
+                JOptionPane.showMessageDialog(this, "No vehicle found","",JOptionPane.ERROR_MESSAGE);
+                return -1;
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {       
+        int PolicyID = result.getInt("PolicyID");    
+                                          
+        new PolicyInfo(PolicyID,VehicleNumber,PolicyPremiumCalculator.getPremiuim_UsingPolicyID(PolicyID, VehicleNumber)).setVisible(true);
         this.setVisible(false);
     }                                            
-
+    private void Companyname_labelMouseClicked(){
+        this.dispose();
+        new UserHomePage(DBConnector.getCustomerID_UsingVehicleNumber(VehicleNumber));
+    }
     /**
      * @param args the command line arguments
      */
